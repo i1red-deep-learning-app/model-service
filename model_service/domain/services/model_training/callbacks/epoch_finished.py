@@ -16,7 +16,7 @@ class EpochFinishedCallback(callbacks.Callback):
         loss = logs["loss"]
         validation_loss = logs["val_loss"]
         metrics = {metric: value for metric, value in logs.items() if metric != "loss" and metric != "val_loss"}
-        weights = pickle.dumps(self.model.get_weights())
+        weights = self.model.get_weights()
 
         event = EpochFinished(self.user, self.training_session_id, epoch, loss, validation_loss, metrics, weights)
 

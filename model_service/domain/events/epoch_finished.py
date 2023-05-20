@@ -1,4 +1,5 @@
 import attrs
+import numpy as np
 
 
 @attrs.define
@@ -9,4 +10,4 @@ class EpochFinished:
     loss: float = attrs.field()
     validation_loss: float = attrs.field()
     metrics: dict = attrs.field()
-    weights: bytes = attrs.field()
+    weights: list[np.ndarray] = attrs.field()
