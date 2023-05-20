@@ -1,7 +1,5 @@
 import pytest
 
-from model_service.domain.entities.dataset.table_dataset import TableDataset
-from model_service.domain.entities.neural_network.feed_forward_network import FeedForwardNetwork
 from model_service.domain.entities.training.loss_function_type import LossFunctionType
 from model_service.domain.entities.training.metric_type import MetricType
 from model_service.domain.entities.training.training_session import TrainingSession

@@ -1,4 +1,3 @@
-import pickle
 from tensorflow.python.keras import callbacks
 
 from model_service.domain.events.epoch_finished import EpochFinished
