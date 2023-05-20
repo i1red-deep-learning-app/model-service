@@ -2,7 +2,7 @@ import io
 
 import pandas as pd
 
-from model_service.application.external_commands.start_ffn_training import StartFfnTraining
+from model_service.application.commands.start_ffn_training import StartFfnTraining
 from model_service.dependencies.dependency_management.provide import Dependency, provide
 from model_service.domain.data_storage.abstract_data_storage import AbstractDataStorage
 from model_service.domain.repositories.abstract_feed_forward_network_repository import (

@@ -1,6 +1,6 @@
 import pytest
 
-from model_service.application.external_commands.start_ffn_training import StartFfnTraining
+from model_service.application.commands.start_ffn_training import StartFfnTraining
 
 
 @pytest.fixture
