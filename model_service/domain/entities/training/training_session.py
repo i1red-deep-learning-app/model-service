@@ -12,6 +12,7 @@ from model_service.domain.entities.value_objects.optimizer import Optimizer
 class TrainingSession(BaseEntity):
     id: Generated[str] = attrs.field()
     user: str = attrs.field()
+    network_id: str = attrs.field()
     dataset_id: str = attrs.field()
     optimizer: Optimizer = attrs.field()
     loss_function: LossFunctionType = attrs.field()
