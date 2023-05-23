@@ -17,6 +17,8 @@ def create_feed_forward_network_callback(
     properties: BasicProperties,
     body: bytes,
 ) -> None:
+    channel.basic_ack(method.delivery_tag)
+
     logger.info(f"Handle {CreateFeedForwardNetwork.__name__}. Serialized body: {body}")
     command = CreateFeedForwardNetwork.parse_raw(body)
     create_feed_forward_network(command)

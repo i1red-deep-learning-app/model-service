@@ -17,6 +17,8 @@ def create_table_dataset_callback(
     properties: BasicProperties,
     body: bytes,
 ) -> None:
+    channel.basic_ack(method.delivery_tag)
+
     logger.info(f"Handle {CreateTableDataset.__name__}. Serialized body: {body}")
     command = CreateTableDataset.parse_raw(body)
     create_table_dataset(command)
