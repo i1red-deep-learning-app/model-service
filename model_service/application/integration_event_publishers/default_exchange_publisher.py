@@ -4,8 +4,9 @@ from typing import Generic, TypeVar
 import attrs
 from pika.adapters.blocking_connection import BlockingChannel
 
+from model_service.application.integration_events.integration_event import IntegrationEvent
 
-TIntegrationEvent = TypeVar("TIntegrationEvent")
+TIntegrationEvent = TypeVar("TIntegrationEvent", bound=IntegrationEvent)
 
 
 class DefaultExchangePublisher(Generic[TIntegrationEvent]):

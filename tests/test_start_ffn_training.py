@@ -5,7 +5,7 @@ from model_service.application.commands.start_ffn_training import StartFfnTraini
 from model_service.application.services.start_ffn_training import start_ffn_training
 from model_service.domain.data_storage.abstract_data_storage import AbstractDataStorage
 from model_service.domain.events.epoch_finished import EpochFinished
-from model_service.domain.events.handlers import register_event_handler
+from model_service.domain.events.handlers import register_domain_event_handler
 from model_service.domain.repositories.abstract_feed_forward_network_repository import (
     AbstractFeedForwardNetworkRepository,
 )
@@ -22,7 +22,9 @@ def test_start_ffn_training(
     training_result_repository: AbstractTrainingResultRepository,
     data_storage: AbstractDataStorage,
 ) -> None:
-    register_event_handler(EpochFinished, SaveResultOnEpochFinishedHandler(training_result_repository, data_storage))
+    register_domain_event_handler(
+        EpochFinished, SaveResultOnEpochFinishedHandler(training_result_repository, data_storage)
+    )
 
     start_ffn_training(
         command, feed_forward_network_repository, training_session_repository, table_dataset_repository, data_storage

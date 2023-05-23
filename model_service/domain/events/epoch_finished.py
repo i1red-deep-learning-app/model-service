@@ -1,9 +1,11 @@
 import attrs
 import numpy as np
 
+from model_service.domain.events.domain_event import DomainEvent
+
 
 @attrs.define
-class EpochFinished:
+class EpochFinished(DomainEvent):
     user: str = attrs.field()
     training_session_id: str = attrs.field()
     epoch: int = attrs.field()

@@ -6,7 +6,6 @@ from model_service.dependencies.dependency_management.provide import Dependency,
 from model_service.domain.repositories.abstract_training_session_repository import AbstractTrainingSessionRepository
 
 
-
 @provide
 def create_training_session(
     command: CreateTrainingSession,
