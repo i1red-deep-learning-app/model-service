@@ -6,6 +6,7 @@ from model_service.domain.data_storage.abstract_data_storage import AbstractData
 from model_service.domain.events.epoch_finished import EpochFinished
 from model_service.domain.entities.training.training_result import TrainingResult
 from model_service.domain.repositories.abstract_training_result_repository import AbstractTrainingResultRepository
+from model_service.utility.log_function import log_function
 
 
 class SaveResultOnEpochFinishedHandler:
@@ -17,6 +18,7 @@ class SaveResultOnEpochFinishedHandler:
         self.training_result_repository = training_result_repository
         self.data_storage = data_storage
 
+    @log_function()
     def __call__(self, event: EpochFinished) -> None:
         training_result = self.training_result_repository.get_by_training_session_id(event.training_session_id)
 

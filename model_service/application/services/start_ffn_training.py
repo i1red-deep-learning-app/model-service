@@ -11,8 +11,10 @@ from model_service.domain.repositories.abstract_feed_forward_network_repository 
 from model_service.domain.repositories.abstract_table_dataset_repository import AbstractTableDatasetRepository
 from model_service.domain.repositories.abstract_training_session_repository import AbstractTrainingSessionRepository
 from model_service.domain.services.model_training.train_feed_forward_network import train_feed_forward_network
+from model_service.utility.log_function import log_function
 
 
+@log_function()
 @provide
 def start_ffn_training(
     command: StartFfnTraining,

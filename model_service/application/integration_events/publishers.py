@@ -1,7 +1,10 @@
+import logging
 from collections.abc import Callable
 from typing import Final, TypeVar, Type
 
 from model_service.application.integration_events.integration_event import IntegrationEvent
+
+logger = logging.getLogger(__name__)
 
 TIntegrationEvent = TypeVar("TIntegrationEvent", bound=IntegrationEvent)
 
@@ -28,5 +31,6 @@ def unregister_integration_event_publisher(
 
 
 def publish_integration_event(event: IntegrationEvent) -> None:
+    logger.info(f"Publish {type(event).__name__} integration event")
     publisher = _INTEGRATION_EVENT_PUBLISHERS[type(event)]
     publisher(event)
