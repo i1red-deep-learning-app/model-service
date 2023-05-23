@@ -4,10 +4,10 @@ from model_service.application.integration_events.training_session_created impor
 from model_service.application.schema_mappers.map_training_session_from_schema import map_training_session_from_schema
 from model_service.dependencies.dependency_management.provide import Dependency, provide
 from model_service.domain.repositories.abstract_training_session_repository import AbstractTrainingSessionRepository
-from model_service.utility.log_function import log_function
+from model_service.utility.logging.log_function_execution import log_function_execution
 
 
-@log_function()
+@log_function_execution()
 @provide
 def create_training_session(
     command: CreateTrainingSession,
