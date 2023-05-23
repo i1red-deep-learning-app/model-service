@@ -10,10 +10,10 @@ from model_service.domain.services.model_training.keras_converters.feed_forward_
 from model_service.domain.services.model_training.keras_converters.loss import create_loss
 from model_service.domain.services.model_training.keras_converters.metric import create_metric
 from model_service.domain.services.model_training.keras_converters.optimizer import create_keras_optimizer
-from model_service.utility.log_function import log_function
+from model_service.utility.logging.log_function_execution import log_function_execution
 
 
-@log_function()
+@log_function_execution()
 def train_feed_forward_network(
     feed_forward_network: FeedForwardNetwork,
     training_session: TrainingSession,
