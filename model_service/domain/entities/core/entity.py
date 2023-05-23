@@ -6,9 +6,10 @@ from model_service.domain.entities.core.generated import GeneratedType, GENERATE
 
 
 TEntity = TypeVar("TEntity", bound="BaseEntity")
+TEntityCls = TypeVar("TEntityCls")
 
 
-def entity(cls: Type[TEntity]) -> Type[TEntity]:
+def entity(cls: TEntityCls) -> TEntityCls:
     cls._generated_attributes = {attr.name: GENERATED_VALUE for attr in attrs.fields(cls) if is_generated(attr.type)}
     return cls
 

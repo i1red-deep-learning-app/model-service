@@ -5,7 +5,7 @@ import attrs
 
 class ActivationFunctionType(Enum):
     RELU = "relu"
-    TANH = ("tanh",)
+    TANH = "tanh"
     LEAKY_RELU = "leaky_relu"
     PRELU = "prelu"
     SIGMOID = "sigmoid"
