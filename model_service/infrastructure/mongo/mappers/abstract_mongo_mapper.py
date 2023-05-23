@@ -10,7 +10,7 @@ TEntity = TypeVar("TEntity", bound=BaseEntity)
 TModel = TypeVar("TModel", bound=Document)
 
 
-class AbstractMapper(Generic[TEntity, TModel], ABC):
+class AbstractMongoMapper(Generic[TEntity, TModel], ABC):
     @abstractmethod
     def entity_to_model(self, entity: TEntity) -> TModel:
         """Map entity to model"""

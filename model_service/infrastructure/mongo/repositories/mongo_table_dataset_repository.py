@@ -1,13 +1,13 @@
 from bson import ObjectId
 
-from model_service.infrastructure.mongo.mappers.abstract_mapper import AbstractMapper
+from model_service.infrastructure.mongo.mappers.abstract_mongo_mapper import AbstractMongoMapper
 from model_service.infrastructure.mongo.models.dataset.table_dataset import TableDatasetModel
 from model_service.domain.repositories.abstract_table_dataset_repository import AbstractTableDatasetRepository
 from model_service.domain.entities.dataset.table_dataset import TableDataset
 
 
 class MongoTableDatasetRepository(AbstractTableDatasetRepository):
-    def __init__(self, mapper: AbstractMapper[TableDataset, TableDatasetModel]) -> None:
+    def __init__(self, mapper: AbstractMongoMapper[TableDataset, TableDatasetModel]) -> None:
         self._mapper = mapper
 
     def save(self, table_dataset: TableDataset) -> TableDataset:

@@ -5,13 +5,13 @@ from mongoengine import Document, ObjectIdField
 
 from model_service.domain.entities.core.entity import BaseEntity
 from model_service.domain.entities.core.generated import GENERATED_VALUE
-from model_service.infrastructure.mongo.mappers.abstract_mapper import AbstractMapper
+from model_service.infrastructure.mongo.mappers.abstract_mongo_mapper import AbstractMongoMapper
 
 TEntity = TypeVar("TEntity", bound=BaseEntity)
 TModel = TypeVar("TModel", bound=Document)
 
 
-class DefaultMapper(AbstractMapper[TEntity, TModel]):
+class DefaultMongoMapper(AbstractMongoMapper[TEntity, TModel]):
     def __init__(self, entity_type: Type[TEntity], model_type: Type[TModel]) -> None:
         self._entity_type = entity_type
         self._model_type = model_type

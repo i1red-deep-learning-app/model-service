@@ -2,12 +2,12 @@ from bson import ObjectId
 
 from model_service.domain.entities.training.training_result import TrainingResult
 from model_service.domain.repositories.abstract_training_result_repository import AbstractTrainingResultRepository
-from model_service.infrastructure.mongo.mappers.abstract_mapper import AbstractMapper
+from model_service.infrastructure.mongo.mappers.abstract_mongo_mapper import AbstractMongoMapper
 from model_service.infrastructure.mongo.models.training.training_result_model import TrainingResultModel
 
 
 class MongoTrainingResultRepository(AbstractTrainingResultRepository):
-    def __init__(self, mapper: AbstractMapper[TrainingResult, TrainingResultModel]) -> None:
+    def __init__(self, mapper: AbstractMongoMapper[TrainingResult, TrainingResultModel]) -> None:
         self._mapper = mapper
 
     def save(self, training_result: TrainingResult) -> TrainingResult:
