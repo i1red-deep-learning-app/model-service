@@ -18,6 +18,8 @@ def start_ffn_training_callback(
     properties: BasicProperties,
     body: bytes,
 ) -> None:
+    channel.basic_ack(method.delivery_tag)
+
     logger.info(f"Handle {CreateFeedForwardNetwork.__name__}. Serialized body: {body}")
     command = StartFfnTraining.parse_raw(body)
     start_ffn_training(command)

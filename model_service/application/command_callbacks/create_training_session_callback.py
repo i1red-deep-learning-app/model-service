@@ -17,6 +17,8 @@ def create_training_session_callback(
     properties: BasicProperties,
     body: bytes,
 ) -> None:
+    channel.basic_ack(method.delivery_tag)
+
     logger.info(f"Handle {CreateTrainingSession.__name__}. Serialized body: {body}")
     command = CreateTrainingSession.parse_raw(body)
     create_training_session(command)
