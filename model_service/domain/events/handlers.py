@@ -1,7 +1,10 @@
+import logging
 from collections.abc import Callable
 from typing import Final, TypeVar, Type
 
 from model_service.domain.events.domain_event import DomainEvent
+
+logger = logging.getLogger(__name__)
 
 TDomainEvent = TypeVar("TDomainEvent", bound=DomainEvent)
 
@@ -25,5 +28,6 @@ def unregister_domain_event_handler(event_type: Type[TDomainEvent], handler: Cal
 
 
 def publish_domain_event(event: DomainEvent) -> None:
+    logger.info(f"Publish {type(event).__name__} domain event")
     for handler in _DOMAIN_EVENT_HANDLERS[type(event)]:
         handler(event)

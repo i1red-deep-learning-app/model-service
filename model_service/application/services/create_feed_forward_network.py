@@ -8,8 +8,10 @@ from model_service.dependencies.dependency_management.provide import Dependency,
 from model_service.domain.repositories.abstract_feed_forward_network_repository import (
     AbstractFeedForwardNetworkRepository,
 )
+from model_service.utility.log_function import log_function
 
 
+@log_function()
 @provide
 def create_feed_forward_network(
     command: CreateFeedForwardNetwork,

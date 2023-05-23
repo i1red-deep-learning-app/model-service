@@ -4,8 +4,10 @@ from model_service.application.integration_events.table_dataset_created import T
 from model_service.application.schema_mappers.map_table_dataset_from_schema import map_table_dataset_from_schema
 from model_service.dependencies.dependency_management.provide import Dependency, provide
 from model_service.domain.repositories.abstract_table_dataset_repository import AbstractTableDatasetRepository
+from model_service.utility.log_function import log_function
 
 
+@log_function()
 @provide
 def create_table_dataset(
     command: CreateTableDataset,
