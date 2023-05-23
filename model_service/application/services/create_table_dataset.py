@@ -6,7 +6,6 @@ from model_service.dependencies.dependency_management.provide import Dependency,
 from model_service.domain.repositories.abstract_table_dataset_repository import AbstractTableDatasetRepository
 
 
-
 @provide
 def create_table_dataset(
     command: CreateTableDataset,
