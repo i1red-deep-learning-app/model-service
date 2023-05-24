@@ -10,6 +10,8 @@ from tests.fixtures.file_key import file_key  # noqa
 from tests.fixtures.labels_column import labels_column  # noqa
 from tests.fixtures.table_dataset_id import table_dataset_id  # noqa
 from tests.fixtures.table_dataset_repository import table_dataset_repository  # noqa
+from tests.fixtures.training_completed_publisher_mock import training_completed_publisher_mock  # noqa
+from tests.fixtures.training_epoch_finished_publisher_mock import training_epoch_finished_publisher_mock  # noqa
 from tests.fixtures.training_result_repository import training_result_repository  # noqa
 from tests.fixtures.training_session import training_session  # noqa
 from tests.fixtures.training_session_id import training_session_id  # noqa
