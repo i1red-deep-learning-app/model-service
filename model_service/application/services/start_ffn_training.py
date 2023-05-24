@@ -3,6 +3,8 @@ import io
 import pandas as pd
 
 from model_service.application.commands.start_ffn_training import StartFfnTraining
+from model_service.application.integration_events.core.publishers import publish_integration_event
+from model_service.application.integration_events.training_completed import TrainingCompleted
 from model_service.dependencies.dependency_management.provide import Dependency, provide
 from model_service.domain.data_storage.abstract_data_storage import AbstractDataStorage
 from model_service.domain.repositories.abstract_feed_forward_network_repository import (
@@ -32,3 +34,6 @@ def start_ffn_training(
         data = pd.read_feather(bytes_io)
 
     train_feed_forward_network(feed_forward_network, training_session, table_dataset_info, data)
+
+    event = TrainingCompleted(training_session_id=command.training_session_id)
+    publish_integration_event(event)
