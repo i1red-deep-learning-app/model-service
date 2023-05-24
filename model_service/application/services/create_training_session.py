@@ -1,5 +1,5 @@
 from model_service.application.commands.create_training_session import CreateTrainingSession
-from model_service.application.integration_events.publishers import publish_integration_event
+from model_service.application.integration_events.core.publishers import publish_integration_event
 from model_service.application.integration_events.training_session_created import TrainingSessionCreated
 from model_service.application.schema_mappers.map_training_session_from_schema import map_training_session_from_schema
 from model_service.dependencies.dependency_management.provide import Dependency, provide

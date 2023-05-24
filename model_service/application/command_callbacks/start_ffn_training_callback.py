@@ -1,8 +1,10 @@
 import logging
 
-from model_service.application.command_callbacks.command_callback import command_callback
+from model_service.application.command_callbacks.core.command_callback import command_callback
 from model_service.application.commands.create_feed_forward_network import CreateFeedForwardNetwork
-from model_service.application.command_callbacks.handle_command_callback_errors import handle_command_callback_errors
+from model_service.application.command_callbacks.core.handle_command_callback_errors import (
+    handle_command_callback_errors,
+)
 from model_service.application.commands.start_ffn_training import StartFfnTraining
 from model_service.application.services.start_ffn_training import start_ffn_training
 

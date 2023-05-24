@@ -1,7 +1,9 @@
 import logging
 
-from model_service.application.command_callbacks.command_callback import command_callback
-from model_service.application.command_callbacks.handle_command_callback_errors import handle_command_callback_errors
+from model_service.application.command_callbacks.core.command_callback import command_callback
+from model_service.application.command_callbacks.core.handle_command_callback_errors import (
+    handle_command_callback_errors,
+)
 from model_service.application.commands.create_table_dataset import CreateTableDataset
 from model_service.application.services.create_table_dataset import create_table_dataset
 

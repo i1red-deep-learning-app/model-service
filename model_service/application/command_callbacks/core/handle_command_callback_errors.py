@@ -1,7 +1,7 @@
 import functools
 
-from model_service.application.command_callbacks.command_callback import CommandCallback
-from model_service.application.integration_events.publishers import publish_integration_event
+from model_service.application.command_callbacks.core.command_callback import CommandCallback
+from model_service.application.integration_events.core.publishers import publish_integration_event
 from model_service.application.integration_events.task_failed import TaskFailed
 
 
