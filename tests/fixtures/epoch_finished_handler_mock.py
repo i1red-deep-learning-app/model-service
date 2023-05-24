@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 import pytest
 
 from model_service.domain.events.epoch_finished import EpochFinished
-from model_service.domain.events.handlers import register_domain_event_handler, unregister_domain_event_handler
+from model_service.domain.events.core.handlers import register_domain_event_handler, unregister_domain_event_handler
 
 
 @pytest.fixture

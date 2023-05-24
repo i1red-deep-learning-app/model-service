@@ -1,7 +1,7 @@
 from tensorflow.python.keras import callbacks
 
 from model_service.domain.events.epoch_finished import EpochFinished
-from model_service.domain.events.handlers import publish_domain_event
+from model_service.domain.events.core.handlers import publish_domain_event
 
 
 class EpochFinishedCallback(callbacks.Callback):

@@ -2,7 +2,7 @@ import logging
 from collections.abc import Callable
 from typing import Final, TypeVar, Type
 
-from model_service.application.integration_events.integration_event import IntegrationEvent
+from model_service.application.integration_events.core.integration_event import IntegrationEvent
 
 logger = logging.getLogger(__name__)
 

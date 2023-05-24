@@ -1,7 +1,7 @@
 import attrs
 import numpy as np
 
-from model_service.domain.events.domain_event import DomainEvent
+from model_service.domain.events.core.domain_event import DomainEvent
 
 
 @attrs.define

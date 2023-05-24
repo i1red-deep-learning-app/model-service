@@ -2,7 +2,7 @@ import logging
 from collections.abc import Callable
 from typing import Final, TypeVar, Type
 
-from model_service.domain.events.domain_event import DomainEvent
+from model_service.domain.events.core.domain_event import DomainEvent
 
 logger = logging.getLogger(__name__)
 
