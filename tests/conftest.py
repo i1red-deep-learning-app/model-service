@@ -3,6 +3,7 @@ from tests.fixtures.data import data  # noqa
 from tests.fixtures.data_storage import data_storage  # noqa
 from tests.fixtures.dataset_info import dataset_info  # noqa
 from tests.fixtures.epoch_finished_handler_mock import epoch_finished_handler_mock  # noqa
+from tests.fixtures.execution_context import execution_context  # noqa
 from tests.fixtures.feed_forward_network import feed_forward_network  # noqa
 from tests.fixtures.feed_forward_network_id import feed_forward_network_id  # noqa
 from tests.fixtures.feed_forward_network_repository import feed_forward_network_repository  # noqa
