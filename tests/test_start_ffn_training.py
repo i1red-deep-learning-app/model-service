@@ -20,6 +20,9 @@ from model_service.domain.repositories.abstract_feed_forward_network_repository 
 from model_service.domain.repositories.abstract_table_dataset_repository import AbstractTableDatasetRepository
 from model_service.domain.repositories.abstract_training_result_repository import AbstractTrainingResultRepository
 from model_service.domain.repositories.abstract_training_session_repository import AbstractTrainingSessionRepository
+from model_service.domain.shared.execution_context import ExecutionContext
+from model_service.shared.dependency_management.provider_getters import get_scoped_provider
+from model_service.shared.dependency_management.providers.scoped_dependency_provider import ScopedDependencies
 
 
 @pytest.fixture
@@ -37,6 +40,7 @@ def _setup(
 
 def test_start_ffn_training(
     command: StartFfnTraining,
+    execution_context: ExecutionContext,
     feed_forward_network_repository: AbstractFeedForwardNetworkRepository,
     training_session_repository: AbstractTrainingSessionRepository,
     table_dataset_repository: AbstractTableDatasetRepository,
@@ -46,9 +50,15 @@ def test_start_ffn_training(
     training_completed_publisher_mock: MagicMock,
     _setup: None,
 ) -> None:
-    start_ffn_training(
-        command, feed_forward_network_repository, training_session_repository, table_dataset_repository, data_storage
-    )
+    with ScopedDependencies(get_scoped_provider()) as dependencies:
+        dependencies.set(ExecutionContext, execution_context)
+        start_ffn_training(
+            command,
+            feed_forward_network_repository,
+            training_session_repository,
+            table_dataset_repository,
+            data_storage,
+        )
 
     training_result = training_result_repository.get_by_training_session_id(command.training_session_id)
 

@@ -46,9 +46,9 @@ class ScopedDependencies:
         self._provider._set(type_, obj)
         self._scope_dependencies.append(type_)
 
-    def __exit__(self, exc_type: Type[Exception], exc_val: Exception, exc_tb: "traceback") -> bool | None:
+    def __exit__(self, exc_type: Type[Exception], exc_val: Exception, exc_tb: "traceback") -> bool:
         for dependency_type in self._scope_dependencies:
             self._provider._remove(dependency_type)
 
         self._scope_dependencies = []
-        return None
+        return False
