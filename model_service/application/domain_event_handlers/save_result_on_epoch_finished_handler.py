@@ -1,12 +1,12 @@
 import pickle
 import uuid
 
-from model_service.dependencies.dependency_management.provide import Dependency
+from model_service.shared.dependency_management.provide import Dependency
 from model_service.domain.data_storage.abstract_data_storage import AbstractDataStorage
 from model_service.domain.events.epoch_finished import EpochFinished
 from model_service.domain.entities.training.training_result import TrainingResult
 from model_service.domain.repositories.abstract_training_result_repository import AbstractTrainingResultRepository
-from model_service.utility.logging.log_function_execution import log_function_execution
+from model_service.shared.logging.log_function_execution import log_function_execution
 
 
 class SaveResultOnEpochFinishedHandler:

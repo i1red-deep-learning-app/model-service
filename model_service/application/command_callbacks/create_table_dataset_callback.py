@@ -10,7 +10,7 @@ from model_service.application.services.create_table_dataset import create_table
 from pika.adapters.blocking_connection import BlockingChannel
 from pika.spec import Basic, BasicProperties
 
-from model_service.utility.logging.log_exceptions import log_exceptions
+from model_service.shared.logging.log_exceptions import log_exceptions
 
 logger = logging.getLogger(__name__)
 

@@ -1,19 +1,31 @@
 import functools
 import inspect
 from collections.abc import Callable
-from typing import TypeVar, Any
+from typing import TypeVar, Any, Final
 
-from model_service.dependencies.dependency_management.dependency_provider import (
-    DependencyProvider,
-    get_default_provider,
+from model_service.shared.dependency_management.dependency_kind import DependencyKind, SINGLETON, SCOPED
+from model_service.shared.dependency_management.providers.abstract_dependency_provider import (
+    AbstractDependencyProvider,
+)
+from model_service.shared.dependency_management.provider_getters import (
+    get_singleton_provider,
+    get_scoped_provider,
 )
 
 TCallable = TypeVar("TCallable", bound=Callable)
 
 
+_PROVIDERS_MAP: Final[dict[DependencyKind, AbstractDependencyProvider]] = {
+    SINGLETON: get_singleton_provider(),
+    SCOPED: get_scoped_provider(),
+}
+
+
 class Dependency:
-    def __init__(self, provider: DependencyProvider = get_default_provider(), type_: type | None = None) -> None:
-        self.provider = provider
+    provider: AbstractDependencyProvider
+
+    def __init__(self, dependency_kind: DependencyKind = SINGLETON, type_: type | None = None) -> None:
+        self.provider = _PROVIDERS_MAP[dependency_kind]
         self.type_ = type_
 
 
