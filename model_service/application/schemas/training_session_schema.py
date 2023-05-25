@@ -6,7 +6,6 @@ from model_service.application.schemas.optimizer_schema import OptimizerSchema
 
 
 class TrainingSessionSchema(BaseModel):
-    user: str
     network_id: str
     dataset_id: str
     optimizer: OptimizerSchema
