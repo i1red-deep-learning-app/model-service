@@ -9,7 +9,7 @@ from model_service.application.command_callbacks.core.execution_context.create_e
     create_execution_context,
 )
 from model_service.application.command_callbacks.core.execution_context.exceptions import ExecutionContextCreationError
-from model_service.domain.shared.execution_context import ExecutionContext
+from model_service.application.shared.execution_context import ExecutionContext
 from model_service.shared.dependency_management.provider_getters import get_scoped_provider
 from model_service.shared.dependency_management.providers.scoped_dependency_provider import ScopedDependencies
 

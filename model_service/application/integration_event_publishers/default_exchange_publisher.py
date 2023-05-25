@@ -6,7 +6,7 @@ from pika import BasicProperties
 from pika.adapters.blocking_connection import BlockingChannel
 
 from model_service.application.integration_events.core.integration_event import IntegrationEvent
-from model_service.domain.shared.execution_context import ExecutionContext
+from model_service.application.shared.execution_context import ExecutionContext
 
 TIntegrationEvent = TypeVar("TIntegrationEvent", bound=IntegrationEvent)
 
