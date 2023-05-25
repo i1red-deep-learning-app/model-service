@@ -3,7 +3,7 @@ from collections.abc import Callable
 from typing import Final, TypeVar, Type
 
 from model_service.application.integration_events.core.integration_event import IntegrationEvent
-from model_service.domain.shared.execution_context import ExecutionContext
+from model_service.application.shared.execution_context import ExecutionContext
 from model_service.shared.dependency_management.dependency_kind import SCOPED
 from model_service.shared.dependency_management.provide import Dependency, provide
 

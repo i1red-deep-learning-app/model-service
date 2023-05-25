@@ -1,6 +1,6 @@
 from model_service.application.schemas.table_dataset_schema import TableDatasetSchema
 from model_service.domain.entities.dataset.table_dataset import TableDataset
-from model_service.domain.shared.execution_context import ExecutionContext
+from model_service.application.shared.execution_context import ExecutionContext
 from model_service.shared.dependency_management.dependency_kind import SCOPED
 from model_service.shared.dependency_management.provide import Dependency, provide
 

@@ -1,6 +1,6 @@
 import pytest
 
-from model_service.domain.shared.execution_context import ExecutionContext
+from model_service.application.shared.execution_context import ExecutionContext
 
 
 @pytest.fixture
