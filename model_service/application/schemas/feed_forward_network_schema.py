@@ -4,5 +4,4 @@ from model_service.application.schemas.linear_layer_schema import LinearLayerSch
 
 
 class FeedForwardNetworkSchema(BaseModel):
-    user: str
     layers: list[LinearLayerSchema]
