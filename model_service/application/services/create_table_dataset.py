@@ -2,9 +2,9 @@ from model_service.application.commands.create_table_dataset import CreateTableD
 from model_service.application.integration_events.core.publishers import publish_integration_event
 from model_service.application.integration_events.table_dataset_created import TableDatasetCreated
 from model_service.application.schema_mappers.map_table_dataset_from_schema import map_table_dataset_from_schema
-from model_service.dependencies.dependency_management.provide import Dependency, provide
+from model_service.shared.dependency_management.provide import Dependency, provide
 from model_service.domain.repositories.abstract_table_dataset_repository import AbstractTableDatasetRepository
-from model_service.utility.logging.log_function_execution import log_function_execution
+from model_service.shared.logging.log_function_execution import log_function_execution
 
 
 @log_function_execution()

@@ -1,9 +1,13 @@
-from typing import TypeVar, Type, Final
+from typing import TypeVar, Type
+
+from model_service.shared.dependency_management.providers.abstract_dependency_provider import (
+    AbstractDependencyProvider,
+)
 
 TDependency = TypeVar("TDependency")
 
 
-class DependencyProvider:
+class SingletonDependencyProvider(AbstractDependencyProvider):
     _dependencies: dict[Type[TDependency], TDependency]
 
     def __init__(self) -> None:
@@ -20,10 +24,3 @@ class DependencyProvider:
             raise ValueError(f"Dependency for type {type_.__name__} is not set")
 
         return self._dependencies[type_]
-
-
-_DEFAULT_PROVIDER: Final = DependencyProvider()
-
-
-def get_default_provider() -> DependencyProvider:
-    return _DEFAULT_PROVIDER

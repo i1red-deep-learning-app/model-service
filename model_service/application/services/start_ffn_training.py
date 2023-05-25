@@ -5,7 +5,7 @@ import pandas as pd
 from model_service.application.commands.start_ffn_training import StartFfnTraining
 from model_service.application.integration_events.core.publishers import publish_integration_event
 from model_service.application.integration_events.training_completed import TrainingCompleted
-from model_service.dependencies.dependency_management.provide import Dependency, provide
+from model_service.shared.dependency_management.provide import Dependency, provide
 from model_service.domain.data_storage.abstract_data_storage import AbstractDataStorage
 from model_service.domain.repositories.abstract_feed_forward_network_repository import (
     AbstractFeedForwardNetworkRepository,
@@ -13,7 +13,7 @@ from model_service.domain.repositories.abstract_feed_forward_network_repository 
 from model_service.domain.repositories.abstract_table_dataset_repository import AbstractTableDatasetRepository
 from model_service.domain.repositories.abstract_training_session_repository import AbstractTrainingSessionRepository
 from model_service.domain.services.model_training.train_feed_forward_network import train_feed_forward_network
-from model_service.utility.logging.log_function_execution import log_function_execution
+from model_service.shared.logging.log_function_execution import log_function_execution
 
 
 @log_function_execution()
