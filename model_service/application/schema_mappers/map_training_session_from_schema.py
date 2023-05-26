@@ -14,7 +14,7 @@ def map_training_session_from_schema(
 ) -> TrainingSession:
     optimizer = Optimizer(type=schema.optimizer.type, params=schema.optimizer.params)
     loss_function = LossFunctionType(schema.loss_function)
-    metrics = [MetricType[metric] for metric in schema.metrics]
+    metrics = [MetricType(metric) for metric in schema.metrics]
     return TrainingSession.create(
         user=execution_context.user,
         network_id=schema.network_id,

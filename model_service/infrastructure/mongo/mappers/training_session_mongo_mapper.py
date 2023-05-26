@@ -4,14 +4,14 @@ from model_service.domain.entities.core.generated import GENERATED_VALUE
 from model_service.domain.entities.training.training_session import TrainingSession
 from model_service.domain.entities.value_objects.optimizer import Optimizer
 from model_service.infrastructure.mongo.mappers.abstract_mongo_mapper import AbstractMongoMapper
-from model_service.infrastructure.mongo.models.training.optimizer_model import OptimizerModel
-from model_service.infrastructure.mongo.models.training.training_session_model import TrainingSessionModel
+from model_service.infrastructure.mongo.documents.training.optimizer_document import OptimizerDocument
+from model_service.infrastructure.mongo.documents.training.training_session_document import TrainingSessionDocument
 
 
-class TrainingSessionMongoMapper(AbstractMongoMapper[TrainingSession, TrainingSessionModel]):
-    def entity_to_model(self, entity: TrainingSession) -> TrainingSessionModel:
-        optimizer = OptimizerModel(type=entity.optimizer.type, params=entity.optimizer.params)
-        model = TrainingSessionModel(
+class TrainingSessionMongoMapper(AbstractMongoMapper[TrainingSession, TrainingSessionDocument]):
+    def entity_to_document(self, entity: TrainingSession) -> TrainingSessionDocument:
+        optimizer = OptimizerDocument(type=entity.optimizer.type, params=entity.optimizer.params)
+        document = TrainingSessionDocument(
             user=entity.user,
             network_id=entity.network_id,
             dataset_id=entity.dataset_id,
@@ -23,21 +23,22 @@ class TrainingSessionMongoMapper(AbstractMongoMapper[TrainingSession, TrainingSe
             validation_split=entity.validation_split,
         )
         if entity.id is not GENERATED_VALUE:
-            model.id = ObjectId(entity.id)
+            document.id = ObjectId(entity.id)
 
-        return model
+        return document
 
-    def model_to_entity(self, model: TrainingSessionModel) -> TrainingSession:
-        optimizer = Optimizer(type=model.optimizer.type, params=model.optimizer.params)
+    def document_to_entity(self, document: TrainingSessionDocument) -> TrainingSession:
+        optimizer = Optimizer(type=document.optimizer.type, params=document.optimizer.params)
         entity = TrainingSession(
-            id=str(model.id),
-            network_id=model.network_id,
-            dataset_id=model.dataset_id,
+            id=str(document.id),
+            user=document.user,
+            network_id=document.network_id,
+            dataset_id=document.dataset_id,
             optimizer=optimizer,
-            loss_function=model.loss_function,
-            metrics=model.metrics,
-            epochs=model.epochs,
-            batch_size=model.batch_size,
-            validation_split=model.validation_split,
+            loss_function=document.loss_function,
+            metrics=document.metrics,
+            epochs=document.epochs,
+            batch_size=document.batch_size,
+            validation_split=document.validation_split,
         )
         return entity

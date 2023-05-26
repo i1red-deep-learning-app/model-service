@@ -9,3 +9,7 @@ class AbstractDataStorage(ABC):
     @abstractmethod
     def save_file(self, file_key: str, file_content: bytes) -> None:
         """Save file"""
+
+    @abstractmethod
+    def delete_file(self, file_key: str) -> None:
+        """Delete file"""

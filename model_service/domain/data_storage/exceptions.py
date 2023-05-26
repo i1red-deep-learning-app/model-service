@@ -4,3 +4,7 @@ class LoadingFailedException(Exception):
 
 class SavingFailedException(Exception):
     pass
+
+
+class DeletionFailedException(Exception):
+    pass

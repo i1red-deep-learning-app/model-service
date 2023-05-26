@@ -2,7 +2,8 @@ import boto3
 from botocore.exceptions import ClientError
 
 from model_service.domain.data_storage.abstract_data_storage import AbstractDataStorage
-from model_service.domain.data_storage.exceptions import LoadingFailedException, SavingFailedException
+from model_service.domain.data_storage.exceptions import LoadingFailedException, SavingFailedException, \
+    DeletionFailedException
 
 
 class S3DataStorage(AbstractDataStorage):
@@ -22,3 +23,9 @@ class S3DataStorage(AbstractDataStorage):
             self.s3_client.put_object(Bucket=self.bucket_name, Key=file_key, Body=file_content)
         except ClientError as e:
             raise SavingFailedException(str(e))
+
+    def delete_file(self, file_key: str) -> None:
+        try:
+            self.s3_client.delete_object(Bucket=self.bucket_name, Key=file_key)
+        except ClientError as e:
+            raise DeletionFailedException(str(e))

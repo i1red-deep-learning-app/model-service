@@ -8,18 +8,18 @@ from model_service.domain.entities.core.generated import GENERATED_VALUE
 from model_service.infrastructure.mongo.mappers.abstract_mongo_mapper import AbstractMongoMapper
 
 TEntity = TypeVar("TEntity", bound=BaseEntity)
-TModel = TypeVar("TModel", bound=Document)
+TDocument = TypeVar("TDocument", bound=Document)
 
 
-class DefaultMongoMapper(AbstractMongoMapper[TEntity, TModel]):
-    def __init__(self, entity_type: Type[TEntity], model_type: Type[TModel]) -> None:
+class DefaultMongoMapper(AbstractMongoMapper[TEntity, TDocument]):
+    def __init__(self, entity_type: Type[TEntity], model_type: Type[TDocument]) -> None:
         self._entity_type = entity_type
-        self._model_type = model_type
+        self._document_type = model_type
 
-    def entity_to_model(self, entity: TEntity) -> TModel:
+    def entity_to_document(self, entity: TEntity) -> TDocument:
         model_kwargs = {}
 
-        for field_name, field_type in self._model_type._fields.items():
+        for field_name, field_type in self._document_type._fields.items():
             value = getattr(entity, field_name)
 
             if value is GENERATED_VALUE:
@@ -30,12 +30,12 @@ class DefaultMongoMapper(AbstractMongoMapper[TEntity, TModel]):
 
             model_kwargs[field_name] = value
 
-        return self._model_type(**model_kwargs)
+        return self._document_type(**model_kwargs)
 
-    def model_to_entity(self, model: TModel) -> TEntity:
+    def document_to_entity(self, model: TDocument) -> TEntity:
         entity_kwargs = {}
 
-        for field_name, field_type in self._model_type._fields.items():
+        for field_name, field_type in self._document_type._fields.items():
             if isinstance(field_type, ObjectIdField):
                 value = str(getattr(model, field_name))
             else:
