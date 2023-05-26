@@ -26,6 +26,4 @@ class MongoTableDatasetRepository(AbstractTableDatasetRepository):
 
     def get_user_datasets(self, user: str) -> list[TableDataset]:
         table_dataset_model_iterable = TableDatasetModel.objects(user=user)
-        return [
-            self._mapper.model_to_entity(table_dataset_model) for table_dataset_model in table_dataset_model_iterable
-        ]
+        return list(map(self._mapper.model_to_entity, table_dataset_model_iterable))
