@@ -19,5 +19,5 @@ def create_feed_forward_network(
 ) -> None:
     feed_forward_network = map_feed_forward_network_from_schema(command.feed_forward_network)
     persisted_feed_forward_network = repository.save(feed_forward_network)
-    event = FeedForwardNetworkCreated(feed_forward_network=persisted_feed_forward_network.id)
+    event = FeedForwardNetworkCreated(feed_forward_network_id=persisted_feed_forward_network.id)
     publish_integration_event(event)

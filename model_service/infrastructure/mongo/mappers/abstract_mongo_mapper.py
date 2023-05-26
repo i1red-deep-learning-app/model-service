@@ -7,14 +7,14 @@ from model_service.domain.entities.core.entity import BaseEntity
 
 
 TEntity = TypeVar("TEntity", bound=BaseEntity)
-TModel = TypeVar("TModel", bound=Document)
+TDocument = TypeVar("TDocument", bound=Document)
 
 
-class AbstractMongoMapper(Generic[TEntity, TModel], ABC):
+class AbstractMongoMapper(Generic[TEntity, TDocument], ABC):
     @abstractmethod
-    def entity_to_model(self, entity: TEntity) -> TModel:
+    def entity_to_document(self, entity: TEntity) -> TDocument:
         """Map entity to model"""
 
     @abstractmethod
-    def model_to_entity(self, model: TModel) -> TEntity:
+    def document_to_entity(self, model: TDocument) -> TEntity:
         """Map model to entity"""

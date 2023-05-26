@@ -4,44 +4,46 @@ from model_service.domain.entities.core.generated import GENERATED_VALUE
 from model_service.domain.entities.neural_network.feed_forward_network import FeedForwardNetwork
 from model_service.domain.entities.value_objects.linear_layer import LinearLayer
 from model_service.infrastructure.mongo.mappers.abstract_mongo_mapper import AbstractMongoMapper
-from model_service.infrastructure.mongo.models.neural_network.activation_function import ActivationFunctionModel
-from model_service.infrastructure.mongo.models.neural_network.feed_forward_network import FeedForwardNetworkModel
-from model_service.infrastructure.mongo.models.neural_network.linear_layer import LinearLayerModel
+from model_service.infrastructure.mongo.documents.neural_network.activation_function_document import (
+    ActivationFunctionDocument,
+)
+from model_service.infrastructure.mongo.documents.neural_network.feed_forward_network_document import (
+    FeedForwardNetworkDocument,
+)
+from model_service.infrastructure.mongo.documents.neural_network.linear_layer_document import LinearLayerDocument
 
 
-class FeedForwardNetworkMongoMapper(AbstractMongoMapper[FeedForwardNetwork, FeedForwardNetworkModel]):
-    def entity_to_model(self, entity: FeedForwardNetwork) -> FeedForwardNetworkModel:
+class FeedForwardNetworkMongoMapper(AbstractMongoMapper[FeedForwardNetwork, FeedForwardNetworkDocument]):
+    def entity_to_document(self, entity: FeedForwardNetwork) -> FeedForwardNetworkDocument:
         layers = [
-            LinearLayerModel(
+            LinearLayerDocument(
                 size=layer.size,
-                activation=ActivationFunctionModel(type=layer.activation.type, params=layer.activation.params),
+                activation=ActivationFunctionDocument(type=layer.activation.type, params=layer.activation.params),
             )
             for layer in entity.layers
         ]
-        model = FeedForwardNetworkModel(
+        document = FeedForwardNetworkDocument(
             user=entity.user,
-            input_size=entity.input_size,
             layers=layers,
         )
         if entity.id is not GENERATED_VALUE:
-            model.id = ObjectId(entity.id)
+            document.id = ObjectId(entity.id)
 
-        return model
+        return document
 
-    def model_to_entity(self, model: FeedForwardNetworkModel) -> FeedForwardNetwork:
+    def document_to_entity(self, document: FeedForwardNetworkDocument) -> FeedForwardNetwork:
         layers = [
             LinearLayer(
-                size=layer_model.size,
-                activation=ActivationFunctionModel(
-                    type=layer_model.activation.type, params=layer_model.activation.params
+                size=layer_document.size,
+                activation=ActivationFunctionDocument(
+                    type=layer_document.activation.type, params=layer_document.activation.params
                 ),
             )
-            for layer_model in model.layers
+            for layer_document in document.layers
         ]
         entity = FeedForwardNetwork(
-            id=str(model.id),
-            user=model.user,
-            input_size=model.input_size,
+            id=str(document.id),
+            user=document.user,
             layers=layers,
         )
         return entity

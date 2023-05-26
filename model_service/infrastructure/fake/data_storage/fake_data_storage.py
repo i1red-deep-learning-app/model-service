@@ -1,5 +1,6 @@
 from model_service.domain.data_storage.abstract_data_storage import AbstractDataStorage
-from model_service.domain.data_storage.exceptions import LoadingFailedException, SavingFailedException
+from model_service.domain.data_storage.exceptions import LoadingFailedException, SavingFailedException, \
+    DeletionFailedException
 
 
 class FakeDataStorage(AbstractDataStorage):
@@ -10,7 +11,7 @@ class FakeDataStorage(AbstractDataStorage):
 
     def load_file(self, file_key: str) -> bytes:
         if file_key not in self._files:
-            raise LoadingFailedException("File not present")
+            raise LoadingFailedException(f"File with {file_key=} is not present")
 
         return self._files[file_key]
 
@@ -19,3 +20,9 @@ class FakeDataStorage(AbstractDataStorage):
             raise SavingFailedException(f"File with {file_key=} is already present")
 
         self._files[file_key] = file_content
+
+    def delete_file(self, file_key: str) -> None:
+        if file_key not in self._files:
+            raise DeletionFailedException(f"File with {file_key=} is not present")
+
+        del self._files[file_key]
