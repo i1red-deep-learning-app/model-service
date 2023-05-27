@@ -1,13 +1,13 @@
+from uuid import UUID, uuid4
+
 import attrs
 
-from model_service.domain.entities.core.entity import entity, BaseEntity
-from model_service.domain.entities.core.generated import Generated
+from model_service.domain.entities.core.entity import Entity
 
 
-@entity
-@attrs.define
-class TableDataset(BaseEntity):
-    id: Generated[str] = attrs.field()
+@attrs.define(kw_only=True)
+class TableDataset(Entity):
+    id: UUID = attrs.field(factory=uuid4)
     user: str = attrs.field()
     file_key: str = attrs.field()
     label_column: str = attrs.field()

@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from tensorflow.python.keras import callbacks
 
 from model_service.domain.events.epoch_finished import EpochFinished
@@ -5,7 +7,7 @@ from model_service.domain.events.core.handlers import publish_domain_event
 
 
 class EpochFinishedCallback(callbacks.Callback):
-    def __init__(self, user: str, training_session_id: str) -> None:
+    def __init__(self, user: str, training_session_id: UUID) -> None:
         super().__init__()
 
         self.user = user

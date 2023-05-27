@@ -1,13 +1,11 @@
 from typing import TypeVar, Type
 
-from bson import ObjectId
-from mongoengine import Document, ObjectIdField
+from mongoengine import Document
 
-from model_service.domain.entities.core.entity import BaseEntity
-from model_service.domain.entities.core.generated import GENERATED_VALUE
+from model_service.domain.entities.core.entity import Entity
 from model_service.infrastructure.mongo.mappers.abstract_mongo_mapper import AbstractMongoMapper
 
-TEntity = TypeVar("TEntity", bound=BaseEntity)
+TEntity = TypeVar("TEntity", bound=Entity)
 TDocument = TypeVar("TDocument", bound=Document)
 
 
@@ -20,15 +18,7 @@ class DefaultMongoMapper(AbstractMongoMapper[TEntity, TDocument]):
         model_kwargs = {}
 
         for field_name, field_type in self._document_type._fields.items():
-            value = getattr(entity, field_name)
-
-            if value is GENERATED_VALUE:
-                continue
-
-            if isinstance(field_type, ObjectIdField):
-                value = ObjectId(value)
-
-            model_kwargs[field_name] = value
+            model_kwargs[field_name] = getattr(entity, field_name)
 
         return self._document_type(**model_kwargs)
 
@@ -36,11 +26,6 @@ class DefaultMongoMapper(AbstractMongoMapper[TEntity, TDocument]):
         entity_kwargs = {}
 
         for field_name, field_type in self._document_type._fields.items():
-            if isinstance(field_type, ObjectIdField):
-                value = str(getattr(model, field_name))
-            else:
-                value = getattr(model, field_name)
-
-            entity_kwargs[field_name] = value
+            entity_kwargs[field_name] = getattr(model, field_name)
 
         return self._entity_type(**entity_kwargs)

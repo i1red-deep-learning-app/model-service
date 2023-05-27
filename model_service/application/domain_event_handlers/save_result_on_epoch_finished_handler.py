@@ -30,7 +30,7 @@ class SaveResultOnEpochFinishedHandler:
         weights_file_content = pickle.dumps(event.weights)
         self.data_storage.save_file(weights_file_key, weights_file_content)
 
-        new_training_result = TrainingResult.create(
+        new_training_result = TrainingResult(
             user=event.user,
             training_session_id=event.training_session_id,
             loss=event.loss,

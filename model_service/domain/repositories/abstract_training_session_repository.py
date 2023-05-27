@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from uuid import UUID
 
 from model_service.domain.entities.training.training_session import TrainingSession
 
@@ -9,7 +10,7 @@ class AbstractTrainingSessionRepository(ABC):
         """Save training session info to database"""
 
     @abstractmethod
-    def get_by_id(self, training_session_id: str) -> TrainingSession | None:
+    def get_by_id(self, training_session_id: UUID) -> TrainingSession | None:
         """Get training session info by id"""
 
     @abstractmethod

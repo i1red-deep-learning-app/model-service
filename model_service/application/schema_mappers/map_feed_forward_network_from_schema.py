@@ -20,4 +20,4 @@ def map_feed_forward_network_from_schema(
         )
         for layer_schema in schema.layers
     ]
-    return FeedForwardNetwork.create(user=execution_context.user, layers=layers)
+    return FeedForwardNetwork(user=execution_context.user, layers=layers)

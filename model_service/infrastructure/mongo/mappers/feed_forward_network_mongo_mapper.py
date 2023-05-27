@@ -1,6 +1,3 @@
-from bson import ObjectId
-
-from model_service.domain.entities.core.generated import GENERATED_VALUE
 from model_service.domain.entities.neural_network.feed_forward_network import FeedForwardNetwork
 from model_service.domain.entities.value_objects.linear_layer import LinearLayer
 from model_service.infrastructure.mongo.mappers.abstract_mongo_mapper import AbstractMongoMapper
@@ -22,12 +19,7 @@ class FeedForwardNetworkMongoMapper(AbstractMongoMapper[FeedForwardNetwork, Feed
             )
             for layer in entity.layers
         ]
-        document = FeedForwardNetworkDocument(
-            user=entity.user,
-            layers=layers,
-        )
-        if entity.id is not GENERATED_VALUE:
-            document.id = ObjectId(entity.id)
+        document = FeedForwardNetworkDocument(id=entity.id, user=entity.user, layers=layers)
 
         return document
 
@@ -41,9 +33,6 @@ class FeedForwardNetworkMongoMapper(AbstractMongoMapper[FeedForwardNetwork, Feed
             )
             for layer_document in document.layers
         ]
-        entity = FeedForwardNetwork(
-            id=str(document.id),
-            user=document.user,
-            layers=layers,
-        )
+        entity = FeedForwardNetwork(id=document.id, user=document.user, layers=layers)
+
         return entity

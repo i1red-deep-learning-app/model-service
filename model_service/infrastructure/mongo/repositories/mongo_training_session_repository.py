@@ -1,4 +1,4 @@
-from bson import ObjectId
+from uuid import UUID
 
 from model_service.domain.entities.training.training_session import TrainingSession
 from model_service.domain.repositories.abstract_training_session_repository import AbstractTrainingSessionRepository
@@ -16,8 +16,8 @@ class MongoTrainingSessionRepository(AbstractTrainingSessionRepository):
 
         return self._mapper.document_to_entity(training_session_document)
 
-    def get_by_id(self, training_session_id: str) -> TrainingSession | None:
-        training_session_document = TrainingSessionDocument.objects(id=ObjectId(training_session_id)).first()
+    def get_by_id(self, training_session_id: UUID) -> TrainingSession | None:
+        training_session_document = TrainingSessionDocument.objects(id=training_session_id).first()
 
         if training_session_document is None:
             return None

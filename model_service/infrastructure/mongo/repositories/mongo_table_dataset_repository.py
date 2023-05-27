@@ -1,4 +1,4 @@
-from bson import ObjectId
+from uuid import UUID
 
 from model_service.infrastructure.mongo.mappers.abstract_mongo_mapper import AbstractMongoMapper
 from model_service.infrastructure.mongo.documents.dataset.table_dataset_document import TableDatasetDocument
@@ -16,8 +16,8 @@ class MongoTableDatasetRepository(AbstractTableDatasetRepository):
 
         return self._mapper.document_to_entity(table_dataset_document)
 
-    def get_by_id(self, table_dataset_id: str) -> TableDataset | None:
-        table_dataset_document = TableDatasetDocument.objects(id=ObjectId(table_dataset_id)).first()
+    def get_by_id(self, table_dataset_id: UUID) -> TableDataset | None:
+        table_dataset_document = TableDatasetDocument.objects(id=table_dataset_id).first()
 
         if table_dataset_document is None:
             return None
