@@ -1,4 +1,4 @@
-from bson import ObjectId
+from uuid import UUID
 
 from model_service.domain.entities.training.training_result import TrainingResult
 from model_service.domain.repositories.abstract_training_result_repository import AbstractTrainingResultRepository
@@ -16,15 +16,13 @@ class MongoTrainingResultRepository(AbstractTrainingResultRepository):
 
         return self._mapper.document_to_entity(training_result_document)
 
-    def get_by_training_session_id(self, training_session_id: str) -> TrainingResult | None:
-        training_result_document = TrainingResultDocument.objects(
-            training_session_id=ObjectId(training_session_id)
-        ).first()
+    def get_by_training_session_id(self, training_session_id: UUID) -> TrainingResult | None:
+        training_result_document = TrainingResultDocument.objects(training_session_id=training_session_id).first()
 
         if training_result_document is None:
             return None
 
         return self._mapper.document_to_entity(training_result_document)
 
-    def delete_by_id(self, training_result_id: str) -> None:
-        TrainingResultDocument.objects(id=ObjectId(training_result_id)).delete()
+    def delete_by_id(self, training_result_id: UUID) -> None:
+        TrainingResultDocument.objects(id=training_result_id).delete()

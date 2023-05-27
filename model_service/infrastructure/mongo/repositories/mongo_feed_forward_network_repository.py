@@ -1,4 +1,4 @@
-from bson import ObjectId
+from uuid import UUID
 
 from model_service.domain.entities.neural_network.feed_forward_network import FeedForwardNetwork
 from model_service.domain.repositories.abstract_feed_forward_network_repository import (
@@ -20,8 +20,8 @@ class MongoFeedForwardNetworkRepository(AbstractFeedForwardNetworkRepository):
 
         return self._mapper.document_to_entity(feed_forward_network_document)
 
-    def get_by_id(self, feed_forward_network_id: str) -> FeedForwardNetwork | None:
-        feed_forward_network_document = FeedForwardNetworkDocument.objects(id=ObjectId(feed_forward_network_id)).first()
+    def get_by_id(self, feed_forward_network_id: UUID) -> FeedForwardNetwork | None:
+        feed_forward_network_document = FeedForwardNetworkDocument.objects(id=feed_forward_network_id).first()
 
         if feed_forward_network_document is None:
             return None

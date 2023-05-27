@@ -9,4 +9,4 @@ from model_service.shared.dependency_management.provide import Dependency, provi
 def map_table_dataset_from_schema(
     schema: TableDatasetSchema, execution_context: ExecutionContext = Dependency(SCOPED)
 ) -> TableDataset:
-    return TableDataset.create(user=execution_context.user, file_key=schema.file_key, label_column=schema.label_column)
+    return TableDataset(user=execution_context.user, file_key=schema.file_key, label_column=schema.label_column)

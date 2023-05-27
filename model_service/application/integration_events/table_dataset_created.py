@@ -1,3 +1,5 @@
+from uuid import UUID
+
 import attrs
 
 from model_service.application.integration_events.core.integration_event import IntegrationEvent
@@ -5,4 +7,4 @@ from model_service.application.integration_events.core.integration_event import 
 
 @attrs.define
 class TableDatasetCreated(IntegrationEvent):
-    table_dataset_id: str
+    table_dataset_id: UUID

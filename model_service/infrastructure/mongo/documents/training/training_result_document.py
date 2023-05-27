@@ -1,11 +1,12 @@
-from bson import ObjectId
-from mongoengine import Document, ObjectIdField, StringField, FloatField, DictField
+from uuid import UUID
+
+from mongoengine import Document, StringField, FloatField, DictField, UUIDField
 
 
 class TrainingResultDocument(Document):
-    id: ObjectId = ObjectIdField(db_field="_id", primary_key=True, default=ObjectId)
+    id: UUID = UUIDField(db_field="_id", primary_key=True)
     user: str = StringField()
-    training_session_id: ObjectId = ObjectIdField()
+    training_session_id: UUID = UUIDField()
     loss: float = FloatField()
     validation_loss: float = FloatField()
     metrics: dict = DictField()

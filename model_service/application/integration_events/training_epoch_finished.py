@@ -1,3 +1,5 @@
+from uuid import UUID
+
 import attrs
 
 from model_service.application.integration_events.core.integration_event import IntegrationEvent
@@ -5,5 +7,5 @@ from model_service.application.integration_events.core.integration_event import 
 
 @attrs.define
 class TrainingEpochFinished(IntegrationEvent):
-    training_session_id: str = attrs.field()
-    epoch: int = attrs.field()
+    training_session_id: UUID
+    epoch: int

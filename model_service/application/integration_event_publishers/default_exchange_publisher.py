@@ -7,6 +7,7 @@ from pika.adapters.blocking_connection import BlockingChannel
 
 from model_service.application.integration_events.core.integration_event import IntegrationEvent
 from model_service.application.shared.execution_context import ExecutionContext
+from model_service.shared.json.custom_json_encoder import CustomJSONEncoder
 
 TIntegrationEvent = TypeVar("TIntegrationEvent", bound=IntegrationEvent)
 
@@ -21,7 +22,7 @@ class DefaultExchangePublisher(Generic[TIntegrationEvent]):
         self._channel.queue_declare(queue=self._queue)
 
     def __call__(self, event: TIntegrationEvent, execution_context: ExecutionContext) -> None:
-        body = json.dumps(attrs.asdict(event)).encode()
+        body = json.dumps(attrs.asdict(event), cls=CustomJSONEncoder).encode()
         self._channel.basic_publish(
             exchange="",
             routing_key=self._queue,

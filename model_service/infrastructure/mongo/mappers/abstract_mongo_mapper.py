@@ -3,10 +3,10 @@ from typing import Generic, TypeVar
 
 from mongoengine import Document
 
-from model_service.domain.entities.core.entity import BaseEntity
+from model_service.domain.entities.core.entity import Entity
 
 
-TEntity = TypeVar("TEntity", bound=BaseEntity)
+TEntity = TypeVar("TEntity", bound=Entity)
 TDocument = TypeVar("TDocument", bound=Document)
 
 

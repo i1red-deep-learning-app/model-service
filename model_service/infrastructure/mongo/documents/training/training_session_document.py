@@ -1,13 +1,13 @@
-from bson import ObjectId
+from uuid import UUID
+
 from mongoengine import (
     Document,
-    ObjectIdField,
     StringField,
     FloatField,
     IntField,
     ListField,
     EnumField,
-    EmbeddedDocumentField,
+    EmbeddedDocumentField, UUIDField,
 )
 
 from model_service.domain.entities.training.loss_function_type import LossFunctionType
@@ -16,10 +16,10 @@ from model_service.infrastructure.mongo.documents.training.optimizer_document im
 
 
 class TrainingSessionDocument(Document):
-    id: ObjectId = ObjectIdField(db_field="_id", primary_key=True, default=ObjectId)
+    id: UUID = UUIDField(db_field="_id", primary_key=True)
     user: str = StringField()
-    network_id: ObjectId = ObjectIdField()
-    dataset_id: ObjectId = ObjectIdField()
+    network_id: UUID = UUIDField()
+    dataset_id: UUID = UUIDField()
     optimizer: OptimizerDocument = EmbeddedDocumentField(OptimizerDocument)
     loss_function: LossFunctionType = EnumField(LossFunctionType)
     metrics: list[MetricType] = ListField(EnumField(MetricType))
