@@ -42,4 +42,5 @@ def train_feed_forward_network(
         batch_size=training_session.batch_size,
         validation_split=training_session.validation_split,
         callbacks=[epoch_finished_callback],
+        verbose=0,
     )
