@@ -1,6 +1,9 @@
 from model_service.domain.data_storage.abstract_data_storage import AbstractDataStorage
-from model_service.domain.data_storage.exceptions import LoadingFailedException, SavingFailedException, \
-    DeletionFailedException
+from model_service.domain.data_storage.exceptions import (
+    LoadingFailedException,
+    SavingFailedException,
+    DeletionFailedException,
+)
 
 
 class FakeDataStorage(AbstractDataStorage):

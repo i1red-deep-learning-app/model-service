@@ -7,7 +7,8 @@ from mongoengine import (
     IntField,
     ListField,
     EnumField,
-    EmbeddedDocumentField, UUIDField,
+    EmbeddedDocumentField,
+    UUIDField,
 )
 
 from model_service.domain.entities.training.loss_function_type import LossFunctionType
